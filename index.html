@@ -288,6 +288,46 @@ a:focus-visible,button:focus-visible{outline:calc(1.5 * var(--px)) solid var(--v
   .legal{grid-column:2 / -1;align-self:end;text-align:right}
   .art{height:clamp(220px,36cqw,420px)}
 }
+
+/* One opening sequence. The page background and below-the-fold art stay still. */
+.h1-line{display:block;overflow:hidden}
+.h1-line > span{display:block}
+@media (prefers-reduced-motion:no-preference){
+  .band--hero .pill{
+    animation:entrance-context .48s cubic-bezier(.22,1,.36,1) .06s backwards;
+  }
+  .h1-line:first-child > span{
+    animation:entrance-type .78s cubic-bezier(.22,1,.36,1) .20s backwards;
+  }
+  .h1-line:last-child > span{
+    animation:entrance-type .78s cubic-bezier(.22,1,.36,1) .32s backwards;
+  }
+  .band--hero .sub{
+    animation:entrance-soft .58s cubic-bezier(.22,1,.36,1) .66s backwards;
+  }
+  .band--hero .btn{
+    animation:entrance-soft .56s cubic-bezier(.22,1,.36,1) .84s backwards;
+  }
+  .band--hero .editor{
+    animation:entrance-editor 1s cubic-bezier(.2,.8,.2,1) .56s backwards;
+  }
+}
+@keyframes entrance-type{
+  from{transform:translate3d(0,105%,0)}
+  to{transform:none}
+}
+@keyframes entrance-context{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes entrance-soft{
+  from{opacity:0;transform:translate3d(0,9px,0)}
+  to{opacity:1;transform:none}
+}
+@keyframes entrance-editor{
+  from{opacity:0;transform:translate3d(12px,8px,0) scale(.985)}
+  to{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
@@ -308,7 +348,7 @@ a:focus-visible,button:focus-visible{outline:calc(1.5 * var(--px)) solid var(--v
       <span class="pill__label">Ship Your Idea</span>
     </span>
 
-    <h1 id="cta-title" class="h1 A T">Your next app<br>starts now.</h1>
+    <h1 id="cta-title" class="h1 A T"><span class="h1-line"><span>Your next app</span></span><span class="h1-line"><span>starts now.</span></span></h1>
     <p class="sub A T">Describe it, shape it in the canvas or code, ship it to the App <br>Store, Play Store, or web. No install, no credit card.</p>
     <a class="btn A S T" href="#start">Get started now</a>
   </section>
